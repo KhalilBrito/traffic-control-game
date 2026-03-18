@@ -13,17 +13,29 @@ export default function App() {
   const center = canvas.width / 2;
   const roadWidth = 80;
 
-  // fundo
-  ctx.fillStyle = "#111";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  let carX = 0;
 
-  // rua horizontal
-  ctx.fillStyle = "#444";
-  ctx.fillRect(0, center - roadWidth / 2, canvas.width, roadWidth);
+  function draw() {
+    // limpar tela
+    ctx.fillStyle = "#111";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // rua vertical
-  ctx.fillRect(center - roadWidth / 2, 0, roadWidth, canvas.height);
+    // ruas
+    ctx.fillStyle = "#444";
+    ctx.fillRect(0, center - roadWidth / 2, canvas.width, roadWidth);
+    ctx.fillRect(center - roadWidth / 2, 0, roadWidth, canvas.height);
 
+    // carro
+    ctx.fillStyle = "#00eaff";
+    ctx.fillRect(carX, center - 10, 20, 20);
+
+    // movimento
+    carX += 2;
+
+    requestAnimationFrame(draw);
+  }
+
+  draw();
 }, []);
 
   return (
